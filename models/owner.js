@@ -1,4 +1,3 @@
-var bcrypt = require("bcrypt-nodejs");
 
 module.exports = function(sequelize, DataTypes) {
   var Owner = sequelize.define("Owner", {
@@ -23,10 +22,6 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         isEmail: true
       }
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
     contact: {
       type: DataTypes.INTEGER,
@@ -53,12 +48,6 @@ module.exports = function(sequelize, DataTypes) {
       onDelete: "cascade"
     });
   };
-  Owner.prototype.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.password);
-  };
 
-  Owner.hook("beforeCreate", function(user) {
-    user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
-  });
   return Owner;
 };

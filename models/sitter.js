@@ -1,4 +1,4 @@
-var bcrypt = require("bcrypt-nodejs");
+
 
 module.exports = function (sequelize, DataTypes) {
   var Sitter = sequelize.define("Sitter", {
@@ -23,10 +23,6 @@ module.exports = function (sequelize, DataTypes) {
       validate: {
         isEmail: true
       }
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
     contact: {
       type: DataTypes.INTEGER,
@@ -72,13 +68,6 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false
     },
   });
-
-  Sitter.prototype.validPassword = function (password) {
-    return bcrypt.compareSync(password, this.password);
-  };
-
-  Sitter.hook("beforeCreate", function (user) {
-    user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
-  });
+  
   return Sitter;
 };
