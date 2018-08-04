@@ -7,7 +7,7 @@ module.exports = function (app) {
     // GET route for getting all of the rows in the Pet database
     app.get("/api/dogs", function (req, res) {
         // findAll returns all entries for a table when used with no options
-        db.Pet.findAll({}).then(function (result) {
+        db.Pets.findAll({}).then(function (result) {
             // We have access to the Pets as an argument inside of the callback function
             res.json(result);
         });
@@ -16,7 +16,7 @@ module.exports = function (app) {
     // GET route for getting all of the rows in the Pet database
     app.get("/api/dogs", function (req, res) {
         // findAll returns all entries for a table when used with no options
-        db.Pet.findAll({
+        db.Pets.findAll({
             where: {
                 id: req.params.id
             }
@@ -31,7 +31,7 @@ module.exports = function (app) {
         // create takes an argument of an object describing the item we want to
         // insert into our table. In this case we just we pass in an object with a text
         // and complete property (req.body)
-        db.Pet.create({
+        db.Pets.create({
             name: req.body.name,
             sex: req.body.sex,
             breed: req.body.breed,
@@ -58,7 +58,7 @@ module.exports = function (app) {
     // req.params.id
     app.delete("/api/dogs/:id", function (req, res) {
         // We just have to specify which Pet we want to destroy with "where"
-        db.Pet.destroy({
+        db.Pets.destroy({
             where: {
                 id: req.params.id
             }
@@ -73,7 +73,7 @@ module.exports = function (app) {
 
         // Update takes in an object describing the properties we want to update, and
         // we use where to describe which objects we want to update
-        db.Pet.update({
+        db.Pets.update({
             name: req.body.name,
             sex: req.body.sex,
             breed: req.body.breed,

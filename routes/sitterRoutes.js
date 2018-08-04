@@ -7,7 +7,7 @@ module.exports = function (app) {
   // GET route for getting all of the rows in the Sitter database
   app.get("/api/sitter", function (req, res) {
     // findAll returns all entries for a table when used with no options
-    db.Sitter.findAll({}).then(function (result) {
+    db.Sitters.findAll({}).then(function (result) {
       // We have access to the Sitter as an argument inside of the callback function
       res.json(result);
     });
@@ -16,7 +16,7 @@ module.exports = function (app) {
   // GET route for getting all of the rows in the Sitter database
   app.get("/api/sitter/:id", function (req, res) {
     // findAll returns all entries for a table when used with no options
-    db.Sitter.findAll({
+    db.Sitters.findAll({
       where: {
         id: req.params.id
       }
@@ -31,7 +31,7 @@ module.exports = function (app) {
     // create takes an argument of an object describing the item we want to
     // insert into our table. In this case we just we pass in an object with a text
     // and complete property (req.body)
-    db.Sitter.create({
+    db.Sitters.create({
       name: req.body.name,
       gender: req.body.gender,
       email: req.body.email,
@@ -57,7 +57,7 @@ module.exports = function (app) {
   // req.params.id
   app.delete("/api/sitter/:id", function (req, res) {
     // We just have to specify which Sitter we want to destroy with "where"
-    db.Sitter.destroy({
+    db.Sitters.destroy({
       where: {
         id: req.params.id
       }
@@ -72,7 +72,7 @@ module.exports = function (app) {
 
     // Update takes in an object describing the properties we want to update, and
     // we use where to describe which objects we want to update
-    db.Sitter.update({
+    db.Sitters.update({
       name: req.body.name,
       gender: req.body.gender,
       email: req.body.email,

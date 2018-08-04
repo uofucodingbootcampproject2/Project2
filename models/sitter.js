@@ -71,6 +71,10 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: false
     },
+    liked_dogs: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    }
   });
 
   Sitter.prototype.validPassword = function (password) {

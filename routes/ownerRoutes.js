@@ -7,7 +7,7 @@ module.exports = function (app) {
     // GET route for getting all of the rows in the Owner database
     app.get("/api/owner", function (req, res) {
         // findAll returns all entries for a table when used with no options
-        db.Owner.findAll({
+        db.Owners.findAll({
             include: [db.Pet]
         }).then(function (result) {
             // We have access to the Sitter as an argument inside of the callback function
@@ -18,7 +18,7 @@ module.exports = function (app) {
     // GET route for getting one of the rows in the Owner database
     app.get("/api/owner/:id", function (req, res) {
         // findAll returns all entries for a table when used with no options
-        db.Owner.findAll({
+        db.Owners.findAll({
             where: {
                 id: req.params.id
             },
@@ -34,7 +34,7 @@ module.exports = function (app) {
         // create takes an argument of an object describing the item we want to
         // insert into our table. In this case we just we pass in an object with a text
         // and complete property (req.body)
-        db.Owner.create({
+        db.Owners.create({
             name: req.body.name,
             gender: req.body.gender,
             email: req.body.email,
@@ -56,7 +56,7 @@ module.exports = function (app) {
     // req.params.id
     app.delete("/api/owner/:id", function (req, res) {
         // We just have to specify which Owner we want to destroy with "where"
-        db.Owner.destroy({
+        db.Owners.destroy({
             where: {
                 id: req.params.id
             }
@@ -69,7 +69,7 @@ module.exports = function (app) {
     app.put("/api/owner", function (req, res) {
         // Update takes in an object describing the properties we want to update, and
         // we use where to describe which objects we want to update
-        db.Owner.update({
+        db.Owners.update({
             name: req.body.name,
             gender: req.body.gender,
             email: req.body.email,

@@ -59,6 +59,10 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: false
       },
+      image_link: {
+        type: DataTypes.TEXT,
+        allowNull: false
+      }
     });
     Pet.associate = function (models) {
   
