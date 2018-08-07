@@ -13,11 +13,11 @@
     <!-- jumbo tron-->
         <div class="jumbotron jumbotron-fluid">
           <div class="container">
-            <h1 class="display-4">Duber</h1>
-            <p class="lead">Linking available dogs with a Friend.</p>
+            <h1 class="display-4"style="font-size:100px; color:white;">Duber</h1>
+            <p class="lead"style="font-size:50px; color:white;">Linking available dogs with a Friend.</p>
             <br>
             <br>
-            <button type="button" style="float:right;"class="btn btn-primary btn-md">--Returning User--</button>
+            <a href="returning.html" class="btn btn-primary btn-lg active" style="float:right" role="button" aria-pressed="true">- Returning User -</a>
             <br>
           </div>
         </div>
@@ -69,6 +69,10 @@
                         <label for="pwd">Age of dog:</label>
                         <input type="password" class="form-control" id="pwd">
                       </div>
+                      <div class="form-group">
+                          <label for="pwd">Age of owner:</label>
+                          <input type="password" class="form-control" id="pwd">
+                        </div>
                   <div class="form-group">
                     <label for="pwd">Password:</label>
                     <input type="password" class="form-control" id="pwd">
@@ -87,6 +91,11 @@
                   <option value="1">Male</option>
                   <option value="2">Female</option>
                 </select>
+                <select class="custom-select custom-select-lg mb-3">
+                    <option selected>Owner gender</option>
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                  </select>
                 <select class="custom-select custom-select-lg mb-3">
                     <option selected>Social with people</option>
                     <option value="1">Yes</option>
@@ -117,7 +126,6 @@
                   <label class="checkbox-inline"><input type="checkbox" value="">walk play (medium active)</label>
                   <label class="checkbox-inline"><input type="checkbox" value="">hiking (very active)</label>
                 </div>
-            </div>
             <div> Dog is more comfortable with.
                 <label class="checkbox-inline"><input type="checkbox" value="">Male</label>
                 <label class="checkbox-inline"><input type="checkbox" value="">Female</label>

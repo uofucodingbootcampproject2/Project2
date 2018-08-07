@@ -12,17 +12,11 @@
 }
 .main{
     background-color:rgb(95, 144, 163);
-    height:1000px;
+    height:auto;
 
 
 }
 
-.centermain{
-background-color: rgb(234, 248, 248);
-size:80%;
-
-
-}
 body {
     border:rgb(95, 144, 163);
     size: 5px;
@@ -30,5 +24,14 @@ body {
 
 }
 .centermain {
-    border:
+    border:4px;
+    max-width:95%;
+    padding:20px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(234, 248, 248);
+}
+
+.dogandownimg{
+    height:260px;
 }
