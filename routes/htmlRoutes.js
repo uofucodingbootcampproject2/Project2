@@ -1,8 +1,13 @@
 var db = require("../models");
+var path = require("path");
 
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/frontPage.html"));
+  });
+
+  app.get("/index", function(req, res) {
     db.Pet.findAll({}).then(function(dbPets) {
       res.render("index", {
         msg: "Welcome!",
