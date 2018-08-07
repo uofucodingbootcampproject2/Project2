@@ -1,3 +1,15 @@
 .list-group-item {
   line-height: 2.5;
 }
+.column{
+  float:left;
+  width:33%;
+}
+.jumbotron{
+  background-image:url( /pics/bully.jpg);
+  background-position: 0% 25%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+  text-shadow: black 0.3em 0.3em 0.3em;
+}
