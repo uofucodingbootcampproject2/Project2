@@ -7,6 +7,7 @@ $(document).ready(function () {
     option.text(stateSelect[i]);
     $("#inputState").append(option);
   }
+
   $("#ownerForm").submit(function (event) {
 
     event.preventDefault();
@@ -32,24 +33,51 @@ $(document).ready(function () {
     };
 
 
-
-    // This function grabs todos from the database and updates the view
-    
-
-
-    // This function updates a todo in our database
-    
-
-
-
-    // This function inserts a new todo into our database and then updates the view
-
-
-
     $.post("/api/owner", owner);
     // $newItemInput.val("");
-  }
-  );
+  });
+
+  $("#dogForm").submit(function (event) {
+
+    event.preventDefault();
+  
+    var $newDogNameInput = $("#dogName");
+    var $newDogAgeInput = $("#dogAge");
+    var $newSexInput = $("#dogSex");
+    var $newBreedInput = $("#dogBreed");
+    var $newPerfGenderInput = $("#dogPrefer");
+    var $newFavActivitiesInput = $("#favActivities");
+    var $newSocPeopleInput = $("#dogSocial");
+    var $newSocDogInput = $("#dogOthers");
+    var $newLeashInput = $("#dogLeash");
+    var $newSizeInput = $("#dogSize");
+    var $newActivityInput = $("#dogActivity");
+    var $newDogImageInput = $("#dogImage");
+
+    var dog = {
+      name: $newDogNameInput.val().trim(),
+      sex: $newSexInput.val(),
+      breed: $newBreedInput.val().trim(),
+      age: $newDogAgeInput.val(),
+      social_w_people: $newSocPeopleInput.val(),
+      social_w_dogs: $newSocDogInput.val(),
+
+      favorite_activities: $newFavActivitiesInput.val().trim(),
+
+      leashed: $newLeashInput.val(),
+      activity_level: $newActivityInput.val(),
+      size: $newSizeInput.val(),
+      sitter_gender: $newPerfGenderInput.val(),
+      image_link: $newDogImageInput.val().trim()
+
+    
+    };
+
+
+    $.post("/api/dogs", dog);
+    // $newItemInput.val("");
+    console.log(dog);
+  });
 });
 
 

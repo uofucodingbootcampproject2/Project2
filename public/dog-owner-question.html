@@ -1,144 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dober opening page</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Dober opening page</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="assets/styles/styles.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/assets/js/app.js" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
 </head>
+
 <body>
-    <!-- jumbo tron-->
-        <div class="jumbotron jumbotron-fluid">
-          <div class="container">
-            <h1 class="display-4"style="font-size:100px; color:white;">Duber</h1>
-            <p class="lead"style="font-size:50px; color:white;">Linking available dogs with a Friend.</p>
-            <br>
-            <br>
-            <a href="returning.html" class="btn btn-primary btn-lg active" style="float:right" role="button" aria-pressed="true">- Returning User -</a>
-            <br>
-          </div>
-        </div>
-    <!-- nav bar-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Welcome</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link" href="frontPage.html">Start <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="dog-owner-question.html">Dogs</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="sitter-questions.html">Humans</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-              </ul>
+  <!-- jumbo tron-->
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4" style="font-size:100px; color:white;">Duber</h1>
+      <p class="lead" style="font-size:50px; color:white;">Linking available dogs with a Friend.</p>
+      <br>
+      <br>
+      <a href="returning.html" class="btn btn-primary btn-lg active" style="float:right" role="button" aria-pressed="true">- Returning User -</a>
+      <br>
+    </div>
+  </div>
+  <!-- nav bar-->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Welcome</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="frontPage.html">Start
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="dog-owner-question.html">Dogs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="sitter-questions.html">Humans</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  </div>
+  <!--questions-->
+  <div class="main container">
+    <div class="centermain">
+
+      <form id="dogForm">
+        <div class="form-row">
+          <div class="col">
+            <div class="form-group">
+              <label for="dogName">Name of dog:</label>
+              <input type="text" class="form-control" id="dogName" placeholder="Dog's Name">
             </div>
-          </nav>
-        </div>
-        <!--questions-->
-        <div class= "main container">
-            <div class= "centermain">
-              
-                <div class="form-group">
-                    <label for="usr">Name:</label>
-                    <input type="text" class="form-control" id="usr">
-                  </div>
-
-                  <div class="form-group">
-                      <label for="dogName">Name of dog:</label>
-                      <input type="text" class="form-control" id="dogName">
-                    </div>
-
-                  <div class="form-group">
-                      <label for="cnt">Best contact:</label>
-                      <input type="number" class="form-control" id="cnt">
-                    </div>
-
-                  <div class="form-group">
-                      <label for="eml">Email:</label>
-                      <input type="email" class="form-control" id="eml">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="dogAge">Age of dog:</label>
-                        <input type="number" class="form-control" id="dogAge">
-                      </div>
-                      <div class="form-group">
-                          <label for="ownerAge">Age of owner:</label>
-                          <input type="number" class="form-control" id="ownerAge">
-                        </div>
-
-                  <div class="form-group">
-                    <label for="pwd">Password:</label>
-                    <input type="password" class="form-control" id="pwd">
-                  </div>
-
-                  <div class="form-group">
-                      <label for="dogBreed">Breed of dog:</label>
-                      <input type="text" class="form-control" id="dogBreed">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="zip">Zip code:</label>
-                        <input type="number" class="form-control" id="zip">
-                      </div>
-      
-          <select class="custom-select custom-select-lg mb-3">
-                  <option selected>Dog gender</option>
-                  <option value="1">Male</option>
-                  <option value="2">Female</option>
-                </select>
-                <select class="custom-select custom-select-lg mb-3">
-                    <option selected>Owner gender</option>
-                    <option value="1">Male</option>
-                    <option value="2">Female</option>
-                  </select>
-                <select class="custom-select custom-select-lg mb-3">
-                    <option selected>Social with people</option>
-                    <option value="1">Yes</option>
-                    <option value="2">No</option>
-                  </select>
-                  <select class="custom-select custom-select-lg mb-3">
-                      <option selected>Social with dogs</option>
-                      <option value="1">Yes</option>
-                      <option value="2">No</option>
-                    </select>
-                    <select class="custom-select custom-select-lg mb-3">
-                        <option selected>Leash</option>
-                        <option value="1">Yes</option>
-                        <option value="2">No</option>
-                      </select>
-      
-                Check all that apply.
-              <div>Dogs size.
-                <label class="checkbox-inline"><input type="checkbox" value="">Small</label>
-                <label class="checkbox-inline"><input type="checkbox" value="">Medium</label>
-                <label class="checkbox-inline"><input type="checkbox" value="">Large</label>
-                <label class="checkbox-inline"><input type="checkbox" value="">X-large</label>
-              </div>
-      
-              <div>Perfered activity.
-                  <label class="checkbox-inline"><input type="checkbox" value="">Hangout (non active)</label>
-                  <label class="checkbox-inline"><input type="checkbox" value="">Walking (minimum active)</label>
-                  <label class="checkbox-inline"><input type="checkbox" value="">walk play (medium active)</label>
-                  <label class="checkbox-inline"><input type="checkbox" value="">hiking (very active)</label>
-                </div>
-            <div> Dog is more comfortable with.
-                <label class="checkbox-inline"><input type="checkbox" value="">Male</label>
-                <label class="checkbox-inline"><input type="checkbox" value="">Female</label>
-               
-              </div>
           </div>
-    </body>
-    <footer class= :"foot"></footer>
-    </html>
+          <div class="col">
+            <div class="form-group">
+              <label for="dogBreed">Breed of dog:</label>
+              <input type="text" class="form-control" id="dogBreed" placeholder="Dog's Breed">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col">
+            <div class="form-group">
+              <label for="dogAge">Age of dog:</label>
+              <input type="number" class="form-control" id="dogAge" placeholder="Dog's Age">
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label class="form-sex-label" for="dogSex">Sex of Dog</label>
+              <select class="form-control" id="dogSex">
+                <option>Sex select</option>
+                <option>Male</option>
+                <option>Female</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-row">
+          <div class="col">
+            <div class="form-group">
+              <label class="form-social-label" for="dogSocial">Social with People</label>
+              <select class="form-control" id="dogSocial">
+                <option>Social with People select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="dogPrefer">Prefered Gender</label>
+              <select class="form-control" id="dogPrefer">
+                <option>Prefered Gender select</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Either</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col">
+            <div class="form-group">
+              <label class="form-size-label" for="dogSize">Dog Size</label>
+              <select class="form-control" id="dogSize">
+                <option>Dog Size select</option>
+                <option>Small</option>
+                <option>Medium</option>
+                <option>Large</option>
+                <option>X-large</option>
+              </select>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label class="form-others-label" for="dogOthers">Social with Dogs</label>
+              <select class="form-control" id="dogOthers">
+                <option>Social with Dogs select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col">
+            <div class="form-group">
+              <label class="form-activity-label" for="dogActivity">Dog Activity</label>
+              <select class="form-control" id="dogActivity">
+                <option>Dog Activity Level select</option>
+                <option value="non-active">Hangout (non-active)</option>
+                <option value="minimum active">Walking (minimum active)</option>
+                <option value="medium active">Walk play (medium active)</option>
+                <option value="very active">Hiking (very active)</option>
+              </select>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label class="form-leash-label" for="dogLeash">Leashed</label>
+              <select class="form-control" id="dogLeash">
+                <option>Leashed select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="dogImage">Image of Dog</label>
+            <input type="text" class="form-control" id="dogImage">
+          </div>
+        </div>
+        <!--div class="form-row">
+          <div class="form-group">
+            <label for="dogImage">Image of Dog</label>
+            <input type="file" class="form-control-file" id="dogImage">
+          </div>
+        </div-->
+        <div class="form-row"></div>
+        <div class="form-group">
+          <label class="form-activities-label" for="favActivities">Favorite Activities</label>
+          <textarea class="form-control" id="favActivities" rows="3"></textarea>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+  </div>
+</body>
+<footer class=: "foot"></footer>
+
+</html>
