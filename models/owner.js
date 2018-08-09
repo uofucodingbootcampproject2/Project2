@@ -42,6 +42,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
     },
   });
+  Owner.associate = function (models) {
+
+    Owner.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
   Owner.associate = function(models) {
 
     Owner.hasMany(models.Pet, {
