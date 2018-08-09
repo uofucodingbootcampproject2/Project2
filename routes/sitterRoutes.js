@@ -81,15 +81,15 @@ module.exports = function (app) {
       address: req.body.address,
       age: req.body.age
     }, {
-        where: {
-          id: req.body.id
-        }
-      }).then(function (dbTodo) {
-        res.json(dbTodo);
-      }).catch(function (err) {
-        // Whenever a validation or flag fails, an error is thrown
-        // We can "catch" the error to prevent it from being "thrown", which could crash our node app
-        res.json(err);
-      });
+      where: {
+        id: req.body.id
+      }
+    }).then(function (dbTodo) {
+      res.json(dbTodo);
+    }).catch(function (err) {
+      // Whenever a validation or flag fails, an error is thrown
+      // We can "catch" the error to prevent it from being "thrown", which could crash our node app
+      res.json(err);
+    });
   });
 };
