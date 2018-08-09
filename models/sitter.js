@@ -92,6 +92,13 @@ module.exports = function (sequelize, DataTypes) {
       
     }
   });
-  
+  Sitter.associate = function (models) {
+
+    Sitter.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
   return Sitter;
 };
