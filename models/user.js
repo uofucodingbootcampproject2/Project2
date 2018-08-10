@@ -15,14 +15,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
     },
   });
-  //User.associate = function (models) {
-  //
-  //  User.belongsTo(models.Owner, {
-  //    foreignKey: {
-  //      allowNull: false
-  //    }
-  //  });
-  //};
+  User.associate = function (models) {
+  
+    User.hasOne(models.Owner, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
   //User.associate = function (models) {
   //  //belongsTo
   //  User.belongsTo(models.Sitter, {

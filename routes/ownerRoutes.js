@@ -4,11 +4,26 @@ var db = require("../models");
 // =============================================================
 module.exports = function (app) {
 
-// GET route for getting all of the rows in the Owner database
+  app.get("/api/owners", function(req, res) {
+    var query = {};
+    if (req.query.user_id) {
+      query.UserId = req.query.user_id;
+    }
+    // Here we add an "include" property to our options in our findAll query
+    // We set the value to an array of the models we want to include in a left outer join
+    // In this case, just db.Author
+    db.Owner.findAll({
+      where: query,
+      include: [db.User]
+    }).then(function(dbUser) {
+      res.json(dbUser);
+    });
+  });
+  // GET route for getting all of the rows in the Owner database
   app.get("/api/owner", function (req, res) {
     // findAll returns all entries for a table when used with no options
     db.Owner.findAll({
-      include: [db.Pet]
+      include: [{model: db.Pet}, {model: db.User}],
     }).then(function (result) {
     // We have access to the Sitter as an argument inside of the callback function
       res.json(result);
@@ -16,17 +31,28 @@ module.exports = function (app) {
   });
 
 
-  
+  app.get("/api/owner/email", function (req, res) {
+    // findAll returns all entries for a table when used with no options
+    db.Owner.findAll({
+      
+      where: { email: db.User.email },
+      include: [db.User]
+    }).then(function (result) {
+    // We have access to the Sitter as an argument inside of the callback function
+      res.json(result);
+    });
+  });
 
 
   // GET route for getting one of the rows in the Owner database
   app.get("/api/owner/:id", function (req, res) {
     // findAll returns all entries for a table when used with no options
-    db.Owner.findAll({
+    db.Owner.findOne({
       where: {
         id: req.params.id
       },
-      include: [db.Pet]
+      include: [{model: db.Pet}, {model: db.User}],
+      
     }).then(function (result) {
     // We have access to the Sitter as an argument inside of the callback function
       res.json(result);
@@ -45,7 +71,8 @@ module.exports = function (app) {
       password: req.body.password,
       contact: req.body.contact,
       address: req.body.address,
-      age: req.body.age
+      age: req.body.age,
+      UserId: req.body.UserId
     }).then(function (result) {
     // We have access to the new todo as an argument inside of the callback function
       res.redirect("/members");

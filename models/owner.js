@@ -43,18 +43,21 @@ module.exports = function(sequelize, DataTypes) {
   });
   Owner.associate = function (models) {
   //belongsTo
-    Owner.hasOne(models.User, {
+    Owner.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
       }
-    });
-  };
-  Owner.associate = function(models) {
-
+    }),
     Owner.hasMany(models.Pet, {
       onDelete: "cascade"
     });
   };
+  //Owner.associate = function(models) {
+
+  //  Owner.hasMany(models.Pet, {
+  //    onDelete: "cascade"
+  //  });
+  //};
 
   return Owner;
 };
