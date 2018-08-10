@@ -1,5 +1,3 @@
-
-
 module.exports = function (sequelize, DataTypes) {
   var Sitter = sequelize.define("Sitter", {
     name: {
@@ -31,11 +29,34 @@ module.exports = function (sequelize, DataTypes) {
         len: [1]
       }
     },
-    address: {
+    streetAddress: {
       type: DataTypes.STRING,
       allowNull: false,
       valide: {
         len: [1]
+      }
+    },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      valide: {
+        len: [1]
+      }
+    },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      isUppercase: true,
+      valide: {
+        len: [2,2]
+      }
+    },
+    zipcode: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      isNumeric: true,
+      validate: {
+        len: [4,5]
       }
     },
     age: {
@@ -66,8 +87,16 @@ module.exports = function (sequelize, DataTypes) {
     image_link: {
       type: DataTypes.TEXT,
       allowNull: false
-    },
+    }
+    
   });
-  
+  Sitter.associate = function (models) {
+
+    Sitter.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
   return Sitter;
 };

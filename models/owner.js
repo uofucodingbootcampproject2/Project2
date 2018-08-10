@@ -1,4 +1,3 @@
-
 module.exports = function(sequelize, DataTypes) {
   var Owner = sequelize.define("Owner", {
     name: {
@@ -42,6 +41,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
     },
   });
+  Owner.associate = function (models) {
+  //belongsTo
+    Owner.hasOne(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
   Owner.associate = function(models) {
 
     Owner.hasMany(models.Pet, {

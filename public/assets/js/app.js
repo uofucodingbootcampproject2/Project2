@@ -31,16 +31,16 @@ $(document).ready(function () {
       address: fullAddress,
       age: $newAgeInput.val().trim()
     };
-
-
+    
     $.post("/api/owner", owner);
-    // $newItemInput.val("");
+    
   });
 
+  
   $("#dogForm").submit(function (event) {
 
     event.preventDefault();
-  
+
     var $newDogNameInput = $("#dogName");
     var $newDogAgeInput = $("#dogAge");
     var $newSexInput = $("#dogSex");
@@ -61,16 +61,12 @@ $(document).ready(function () {
       age: $newDogAgeInput.val(),
       social_w_people: $newSocPeopleInput.val(),
       social_w_dogs: $newSocDogInput.val(),
-
       favorite_activities: $newFavActivitiesInput.val().trim(),
-
       leashed: $newLeashInput.val(),
       activity_level: $newActivityInput.val(),
       size: $newSizeInput.val(),
       sitter_gender: $newPerfGenderInput.val(),
       image_link: $newDogImageInput.val().trim()
-
-    
     };
 
 

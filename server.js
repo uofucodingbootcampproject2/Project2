@@ -2,16 +2,22 @@ require("dotenv").config();
 var express = require("express");
 var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
-
+var session = require("express-session");
+// Requiring passport as we've configured it
+var passport = require("./config/passport");
 var db = require("./models");
 
 var app = express();
 var PORT = process.env.PORT || 8080;
 
-// Middleware
-app.use(bodyParser.urlencoded({ extended: false }));
+// Middleware ({ extended: false})<-- Originally
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
+
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Handlebars
 app.engine(
@@ -28,6 +34,7 @@ require("./routes/htmlRoutes")(app);
 require("./routes/dogRoutes")(app);
 require("./routes/ownerRoutes")(app);
 require("./routes/sitterRoutes")(app);
+require("./routes/userRoutes")(app);
 
 var syncOptions = { force: false };
 

@@ -93,5 +93,5 @@ module.exports = function (app) {
     });
   });
 
-  app.put("/api/sitter/")
+  app.put("/api/sitter/");
 };
