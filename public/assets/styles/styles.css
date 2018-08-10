@@ -6,7 +6,7 @@
   width:33%;
 }
 .jumbotron{
-  background-image:url( /pics/bully.jpg);
+  /*background-image:url( /pics/bully.jpg);*/
   background-position: 0% 25%;
   background-size: cover;
   background-repeat: no-repeat;

@@ -15,6 +15,10 @@ module.exports = function (app) {
     });
   });
 
+
+  
+
+
   // GET route for getting one of the rows in the Owner database
   app.get("/api/owner/:id", function (req, res) {
     // findAll returns all entries for a table when used with no options
@@ -44,12 +48,15 @@ module.exports = function (app) {
       age: req.body.age
     }).then(function (result) {
     // We have access to the new todo as an argument inside of the callback function
+      res.redirect("/members");
       res.json(result);
+      
     }).catch(function (err) {
     // Whenever a validation or flag fails, an error is thrown
     // We can "catch" the error to prevent it from being "thrown", which could crash our node app
       res.json(err);
     });
+    
   });
 
   // DELETE route for deleting Owner. We can get the id of the Owner to be deleted from

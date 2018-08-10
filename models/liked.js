@@ -23,6 +23,14 @@ module.exports = function (sequelize, DataTypes) {
       }
     });
   };
+  Liked.associate = function (models) {
+
+    Liked.belongsTo(models.Sitter, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
   return Liked;
   
 };

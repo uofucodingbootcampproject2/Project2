@@ -92,10 +92,16 @@ module.exports = function (sequelize, DataTypes) {
   });
   Sitter.associate = function (models) {
 
-    Sitter.belongsTo(models.User, {
+    Sitter.hasOne(models.User, {
       foreignKey: {
         allowNull: false
       }
+    });
+  };
+  Sitter.associate = function(models) {
+
+    Sitter.hasMany(models.Liked, {
+      onDelete: "cascade"
     });
   };
   return Sitter;

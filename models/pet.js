@@ -73,6 +73,11 @@ module.exports = function (sequelize, DataTypes) {
       }
     });
   };
+  Pet.associate = function(models) {
 
+    Pet.hasMany(models.Liked, {
+      onDelete: "cascade"
+    });
+  };
   return Pet;
 };
