@@ -31,11 +31,11 @@ module.exports = function (app) {
   });
 
 
-  app.get("/api/owner/email", function (req, res) {
+  app.get("/api/owner/sitter/:id", function (req, res) {
     // findAll returns all entries for a table when used with no options
-    db.Owner.findAll({
+    db.Owner.findOne({
       
-      where: { email: db.User.email },
+      where: { UserId: req.params.id},
       include: [db.User]
     }).then(function (result) {
     // We have access to the Sitter as an argument inside of the callback function
