@@ -25,7 +25,7 @@ module.exports = function (sequelize, DataTypes) {
     contact: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      valide: {
+      validate: {
         len: [1]
       }
     },
@@ -39,7 +39,7 @@ module.exports = function (sequelize, DataTypes) {
     city: {
       type: DataTypes.STRING,
       allowNull: false,
-      valide: {
+      validate: {
         len: [1]
       }
     },
@@ -47,7 +47,7 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       isUppercase: true,
-      valide: {
+      validate: {
         len: [2,2]
       }
     },
@@ -91,15 +91,11 @@ module.exports = function (sequelize, DataTypes) {
     
   });
   Sitter.associate = function (models) {
-
-    Sitter.hasOne(models.User, {
+    Sitter.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
       }
-    });
-  };
-  Sitter.associate = function(models) {
-
+    }),
     Sitter.hasMany(models.Liked, {
       onDelete: "cascade"
     });

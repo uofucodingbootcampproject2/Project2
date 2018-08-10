@@ -21,16 +21,13 @@ module.exports = function(sequelize, DataTypes) {
       foreignKey: {
         allowNull: false
       }
+    }),
+    User.hasOne(models.Sitter, {
+      foreignKey: {
+        allowNull: false
+      }
     });
   };
-  //User.associate = function (models) {
-  //  //belongsTo
-  //  User.belongsTo(models.Sitter, {
-  //    foreignKey: 
-  //     "SitterID"
-  //    
-  //  });
-  //};
   User.prototype.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
   };

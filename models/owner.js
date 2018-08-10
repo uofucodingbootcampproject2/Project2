@@ -42,14 +42,14 @@ module.exports = function(sequelize, DataTypes) {
     },
   });
   Owner.associate = function (models) {
-  //belongsTo
+    
+    Owner.hasMany(models.Pet, {
+      onDelete: "cascade"
+    }),
     Owner.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
       }
-    }),
-    Owner.hasMany(models.Pet, {
-      onDelete: "cascade"
     });
   };
   //Owner.associate = function(models) {

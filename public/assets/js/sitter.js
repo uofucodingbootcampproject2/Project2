@@ -1,9 +1,16 @@
 $(document).ready(function () {
+  var user;
   // Getting a reference to the input field where user adds a new todo
   $.get("/api/user_data").then(function (data) {
     $(".member-name").text(data.email);
-    userEmail = data.email;
+    user = data;
+    userEmail = user.email;
   });
+
+  $.get("/api/owner/" + currentUser.id, function(results){
+    console.log(results.UserId);
+  });
+
   var stateSelect = ["AL", "AK", "AS", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FM", "FL", "GA", "GU", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MH", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "MP", "OH", "OK", "OR", "PW", "PA", "PR", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VI", "VA", "WA", "WV", "WI", "WY"];
   for (var i = 0; i < stateSelect.length; i++) {
     var option = $("<option></option>");

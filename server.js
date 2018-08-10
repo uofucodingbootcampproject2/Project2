@@ -36,7 +36,7 @@ require("./routes/ownerRoutes")(app);
 require("./routes/sitterRoutes")(app);
 require("./routes/userRoutes")(app);
 
-var syncOptions = { force: true };
+var syncOptions = { force: false};
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`

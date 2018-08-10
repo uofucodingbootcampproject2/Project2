@@ -42,7 +42,8 @@ module.exports = function (app) {
       preferred_breed: req.body.preferred_breed,
       preferred_size: req.body.preferred_size,
       preferred_activity: req.body.preferred_activity,
-      image_link: req.body.link
+      image_link: req.body.link,
+      UserId: req.body.UserId
     }).then(function (result) {
       // We have access to the new todo as an argument inside of the callback function
       res.json(result);
