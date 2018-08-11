@@ -2,32 +2,27 @@ $(document).ready(function() {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
   var currentUser;
+
+
+
+
+
   $.get("/api/user_data").then(function(data) {
     $(".member-name").text(data.email);
     currentUser = data;
     console.log(currentUser);
-    matchOwner(currentUser);
-    matchSitter(currentUser);
+    matches(currentUser);
   });
-  function matchOwner(currentUser){
-    $.get("/api/owner/" + currentUser.id, function(results){
-      console.log(results.UserId);
-    
-      if(results.UserId !== undefined){
+  function matches(currentUser){
+    $.get("/api/user/owner/"+ currentUser.id, function(results){
+      console.log(results);
+      if(results.Owner !== null){
         $("#createOwner").hide();
-      
       }else{
         $("#createOwner").show();
       }
-    });
-  }
-  function matchSitter(currentUser){
-    $.get("/api/sitter/" + currentUser.id, function(results){
-      console.log(results.UserId);
-    
-      if(results.UserId !== undefined){
+      if(results.Sitter !== null){
         $("#createSitter").hide();
-      
       }else{
         $("#createSitter").show();
       }

@@ -56,7 +56,7 @@ module.exports = function(app) {
     db.User.findOne({
       
       where: { id: req.params.id},
-      include: [db.Owner]
+      include: [{model: db.Owner}, {model: db.Sitter}],
     }).then(function (result) {
     // We have access to the Sitter as an argument inside of the callback function
       res.json(result);

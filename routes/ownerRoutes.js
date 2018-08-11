@@ -30,13 +30,13 @@ module.exports = function (app) {
     });
   });
 
-
+  //remove this route
   app.get("/api/owner/sitter/:id", function (req, res) {
     // findAll returns all entries for a table when used with no options
     db.Owner.findOne({
       
       where: { UserId: req.params.id},
-      include: [db.User]
+      include: [{model: db.User}, {model:db.Sitter}]
     }).then(function (result) {
     // We have access to the Sitter as an argument inside of the callback function
       res.json(result);
