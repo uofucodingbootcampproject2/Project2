@@ -71,8 +71,10 @@ module.exports = function (sequelize, DataTypes) {
       foreignKey: {
         allowNull: false
       }
+    }),
+    Pet.hasMany(models.Liked, {
+      onDelete: "cascade"
     });
   };
-
   return Pet;
 };

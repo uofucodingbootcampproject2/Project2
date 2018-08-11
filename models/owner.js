@@ -1,4 +1,3 @@
-
 module.exports = function(sequelize, DataTypes) {
   var Owner = sequelize.define("Owner", {
     name: {
@@ -30,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }
     },
-    address: {
+    zipcode: {
       type: DataTypes.STRING,
       allowNull: false,
       valide: {
@@ -43,17 +42,14 @@ module.exports = function(sequelize, DataTypes) {
     },
   });
   Owner.associate = function (models) {
-
+    
+    Owner.hasMany(models.Pet, {
+      onDelete: "cascade"
+    }),
     Owner.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
       }
-    });
-  };
-  Owner.associate = function(models) {
-
-    Owner.hasMany(models.Pet, {
-      onDelete: "cascade"
     });
   };
 

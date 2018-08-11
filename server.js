@@ -2,6 +2,8 @@ require("dotenv").config();
 var express = require("express");
 var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
+var session = require("express-session");
+var passport = require("./config/passport");
 
 var db = require("./models");
 
@@ -32,14 +34,15 @@ require("./routes/htmlRoutes")(app);
 require("./routes/dogRoutes")(app);
 require("./routes/ownerRoutes")(app);
 require("./routes/sitterRoutes")(app);
+require("./routes/userRoutes")(app);
 
 var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
-if (process.env.NODE_ENV === "test") {
-  syncOptions.force = true;
-}
+// if (process.env.NODE_ENV === "test") {
+//   syncOptions.force = true;
+// }
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {

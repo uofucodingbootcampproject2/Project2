@@ -10,19 +10,34 @@ module.exports = function(sequelize, DataTypes) {
         isEmail: true
       }
     },
-    userName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-        len:[6,16]
-      }
-    },
+    // username: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    //   unique: true,
+    //   validate: {
+    //     len: [5,16]
+    //   }
+    // },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-    }
+    },
   });
+  User.associate = function (models) {
+  
+    User.hasOne(models.Owner, {
+      foreignKey: {
+        allowNull: false
+      },
+      onDelete: "cascade"
+    }),
+    User.hasOne(models.Sitter, {
+      foreignKey: {
+        allowNull: false
+      },
+      onDelete: "cascade"
+    });
+  };
   User.prototype.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
   };

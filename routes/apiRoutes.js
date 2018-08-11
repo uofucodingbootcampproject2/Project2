@@ -1,11 +1,7 @@
 var db = require("../models");
 var passport = require("../config/passport");
 
-module.exports = function(app) {
-  app.get("/api/login", function(req, res) {
-    console.log("get the error away");
-    res.json(req.body);
-  });
+module.exports = function(app){ 
 
   app.post("/liking a dog/:id", function (req, res) {
     var sitterID = req.body.sitterID;
