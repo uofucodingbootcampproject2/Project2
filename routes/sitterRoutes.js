@@ -35,14 +35,14 @@ module.exports = function (app) {
       name: req.body.name,
       gender: req.body.gender,
       email: req.body.email,
-      password: req.body.password,
       contact: req.body.contact,
-      address: req.body.address,
+      zipcode: req.body.address,
       age: req.body.age,
       preferred_breed: req.body.preferred_breed,
       preferred_size: req.body.preferred_size,
       preferred_activity: req.body.preferred_activity,
-      image_link: req.body.link
+      image_link: req.body.link,
+      UserId: req.body.UserId
     }).then(function (result) {
       // We have access to the new todo as an argument inside of the callback function
       res.json(result);
@@ -76,10 +76,14 @@ module.exports = function (app) {
       name: req.body.name,
       gender: req.body.gender,
       email: req.body.email,
-      password: req.body.password,
       contact: req.body.contact,
-      address: req.body.address,
-      age: req.body.age
+      zipcode: req.body.address,
+      age: req.body.age,
+      preferred_breed: req.body.preferred_breed,
+      preferred_size: req.body.preferred_size,
+      preferred_activity: req.body.preferred_activity,
+      image_link: req.body.link,
+      UserId: req.body.UserId
     }, {
       where: {
         id: req.body.id

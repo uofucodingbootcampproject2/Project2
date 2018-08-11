@@ -1,19 +1,19 @@
 module.exports = function (sequelize, DataTypes) {
   var Liked = sequelize.define("Liked", {
-    User_ID: {
+    Owner_ID: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         len: [1]
       }
     },
-    Dog_ID : {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
-    },
+  // Dog_ID: {
+  //   type: DataTypes.INTEGER,
+  //   allowNull: false,
+  //   validate: {
+  //     len: [1]
+  //   }
+  // },
   });
   Liked.associate = function (models) {
 
@@ -21,8 +21,14 @@ module.exports = function (sequelize, DataTypes) {
       foreignKey: {
         allowNull: false
       }
+    }),
+
+    Liked.belongsTo(models.Sitter, {
+      foreignKey: {
+        allowNull: false
+      }
     });
-  
-    return Liked;
   };
+  return Liked;
+  
 };
