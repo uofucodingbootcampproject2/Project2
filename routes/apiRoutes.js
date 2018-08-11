@@ -4,93 +4,50 @@ var passport = require("../config/passport");
 module.exports = function(app){ 
 
   app.post("/liking a dog/:id", function (req, res) {
-    var sitterID = req.body.sitterID;
-    var dogID = req.params.id;
-    db.Pet.findAll({
-      where: {
-        id: dogID
-      }
-    }).then(function (result) {
-      var likes = result[0].dataValues.sitter_likes;
-      likes = likes + sitterID + ", ";
-      db.Pet.update({
-        sitter_likes: likes
-      },{
-        where: {
-          id: dogID
-        }
-      });
-      res.json(console.log("Updated"));
+    db.Liked.create({
+      OwnerId: req.body.OwnerId,
+      PetId: req.params.id,
+      Sitterid: req.body.SitterId
+    }).then(function (data){
+      res.json(data);
     });
   });
 
   app.get("pulling liked sitters/:id", function(req, res){
-    db.Pet.findAll({
+    db.Liked.findAll({
       where: {
-        id: req.params.id
+        PetId: req.params.id
       }
-    }).then(function (result){
-      var peopleArr = [];
-      var likes = result[0].dataValues.sitter_likes;
-      var people = likes.split(", ");
-      db.Sitter.findAll({
-      }).then(function (data){
-        for(var i = 0; i < data.length; i++){
-          for(var j = 0; j < people.length; j++){
-            if(people[j] === data[i].dataValues.id){
-              peopleArr.push(data[i].dataValues);
-            }
-          }
-        }
-        res.json(peopleArr);
-      });
+    }).then(function (data) {
+      res.json(data);
     });
+    
   });
 
-  app.post("likeing sitters/:id", function(req, res){
-    var sitterID = req.body.sitterID;
-    var ownerID = req.params.id;
-    db.Sitter.findAll({
-      where :{
-        id: sitterID
+  app.post("likeing sitters/", function(req, res){
+    db.Liked.update({
+      Owner_likes_Sitter: true
+    },
+    {
+      where: {
+        PetId: req.body.PetId
       }
-    }).then(function(data){
-      var likes = data[0].dataValues.sitter_likes;
-      likes = likes + ownerID + ", ";
-      db.Sitter.update({
-        owner_likes: likes
-      },{
-        where:{
-          id: sitterID
-        }
-      }).then(function (result){
-        console.log(result);
-        res.json("Updated");
-      });
+    }).then(function (data){
+      res.json(data).catch(function (err) {
+          res.json(err);
     });
   });
 
   app.get("pulling matched sitters and owners/:id", function(req, res){
-    db.Sitter.findAll({
+    db.findAll({
       where: {
-        id: req.params.id
+        PetId: req.params.PetId,
+        Owner_likes_Sitter: true
       }
-    }).then(function (result){
-      var peopleArr = [];
-      var likes = result[0].dataValues.owner_likes;
-      var people = likes.split(", ");
-      db.Owner.findAll({
-      }).then(function (data){
-        for(var i = 0; i < data.length; i++){
-          for(var j = 0; j < people.length; j++){
-            if(people[j] === data[i].dataValues.id){
-              peopleArr.push(data[i].dataValues);
-            }
-          }
-        }
-        res.json(peopleArr);
-      });
-    });
+    }).then(function (data){
+      res.json(data).catch(function (err) {
+        res.json(err);
+    })
   });
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -139,5 +96,81 @@ module.exports = function(app){
         id: req.user.id
       });
     }
+  });
+  app.get("/matches/:id", function (req, res) {
+    var dogArr = [];
+    var sitterInfo;
+    var userInfo;
+    var combatabilityScore = 0;
+    var compatableArr = [];
+    var tempArr = [];
+    function dog(id, image, combatabilityScore, name, breed) {
+      this.id = id;
+      this.image = image,
+      this.combatabilityScore = combatabilityScore,
+      this.name = name,
+      this.breed = breed,
+      this.active = false;
+    }
+    db.Pet.findAll({}).then(function (result) {
+      dogArr = result;
+      
+      db.User.findAll({
+        where: {
+          id: req.params.id
+        }
+      }).then(function (data) {        
+        userInfo = data;
+        console.log("User ID: " + userInfo[0].dataValues.id);
+        db.Sitter.findAll({
+          where: {
+            UserId: sitterInfo[0].dataValues.id
+          }
+        }).then(function (nestedData){
+          sitterInfo = nestedData;
+          for (var i = 0; i < dogArr.length; i++) {
+            //if(dogArr[i].dataValues.OwnerId === )
+            if (sitterInfo[0].dataValues.gender === dogArr[i].dataValues.sitter_gender || dogArr[i].dataValues.sitter_gender === "either") {
+              tempArr.push(dogArr[i]);
+            }
+          }
+          
+          for (var i = 0; i < dogArr.length; i++) {
+            if (sitterInfo[0].dataValues.preferred_breed === tempArr[i].dataValues.breed) {
+              combatabilityScore++;
+              
+            }
+            if (sitterInfo[0].dataValues.preferred_size === tempArr[i].dataValues.size) {
+              combatabilityScore++;
+            
+            }
+            if (sitterInfo[0].dataValues.preferred_activity === tempArr[i].dataValues.activity_level) {
+              combatabilityScore++;
+              
+            }
+            var tempDog = new dog(tempArr[i].dataValues.id, tempArr[i].dataValues.image_link, combatabilityScore, tempArr[i].dataValues.name, tempArr[i].dataValues.breed);
+            if (i < compatableArr.length) {
+              compatableArr.push(tempDog);
+            }
+            else {
+              var splicePoint = compatableArr.length;
+              for (var j = compatableArr.length - 1; j > 0; j--) {
+                if (compatableArr[j].combatabilityScore < tempDog.combatabilityScore) {
+                  splicePoint = j;
+                }
+              }
+              compatableArr.splice(splicePoint, 0, tempDog);
+            }
+            combatabilityScore = 0;
+          }
+          var Returnobj = {
+            pets: []
+          };
+          Returnobj.pets = compatableArr;
+          Returnobj.pets[0].active = true;
+          res.json(Returnobj);
+        });
+      });
+    });
   });
 };

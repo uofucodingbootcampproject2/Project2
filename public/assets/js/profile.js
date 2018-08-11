@@ -32,6 +32,7 @@ $(document).ready(function () {
     $("#viewMatches").on("click", function(){
         $.get("/matches/" + currentUser.id, function (res){
             console.log(res);
+            window.location.replace(res);
         });
     });
 });

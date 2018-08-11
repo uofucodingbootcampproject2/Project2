@@ -7,13 +7,11 @@ module.exports = function (sequelize, DataTypes) {
         len: [1]
       }
     },
-  // Dog_ID: {
-  //   type: DataTypes.INTEGER,
-  //   allowNull: false,
-  //   validate: {
-  //     len: [1]
-  //   }
-  // },
+    Owner_likes_Sitter: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    }
   });
   Liked.associate = function (models) {
 
