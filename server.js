@@ -11,7 +11,7 @@ var app = express();
 var PORT = process.env.PORT || 8080;
 
 // Middleware ({ extended: false})<-- Originally
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 

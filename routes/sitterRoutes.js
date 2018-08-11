@@ -12,16 +12,29 @@ module.exports = function (app) {
       res.json(result);
     });
   });
-
+  
   // GET route for getting all of the rows in the Sitter database
   app.get("/api/sitter/:id", function (req, res) {
     // findAll returns all entries for a table when used with no options
-    db.Sitter.findAll({
+    db.Sitter.findOne({
       where: {
         id: req.params.id
-      }
+      },
+      include: [db.User]
     }).then(function (result) {
       // We have access to the Sitter as an argument inside of the callback function
+      res.json(result);
+    });
+  });
+
+  app.get("/api/owner/sitter/:id", function (req, res) {
+    // findAll returns all entries for a table when used with no options
+    db.Owner.findOne({
+      
+      where: { UserId: req.params.id},
+      include: [db.User]
+    }).then(function (result) {
+    // We have access to the Sitter as an argument inside of the callback function
       res.json(result);
     });
   });
@@ -46,6 +59,7 @@ module.exports = function (app) {
       UserId: req.body.UserId
     }).then(function (result) {
       // We have access to the new todo as an argument inside of the callback function
+      res.redirect("/members");
       res.json(result);
     }).catch(function (err) {
       // Whenever a validation or flag fails, an error is thrown
@@ -80,7 +94,12 @@ module.exports = function (app) {
       password: req.body.password,
       contact: req.body.contact,
       address: req.body.address,
-      age: req.body.age
+      age: req.body.age,
+      preferred_breed: req.body.preferred_breed,
+      preferred_size: req.body.preferred_size,
+      preferred_activity: req.body.preferred_activity,
+      image_link: req.body.link,
+      UserId: req.body.UserId
     }, {
       where: {
         id: req.body.id

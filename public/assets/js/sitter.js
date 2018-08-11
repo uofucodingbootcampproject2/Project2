@@ -7,16 +7,16 @@ $(document).ready(function () {
     user = data;
     console.log(user.id);
     userEmail = user.email;
-    matchOwner(user);
+    //matchOwner(user);
   });
-  function matchOwner(user){
-    $.get("/api/user/owner/" + user.id, function(results){
+  // function matchOwner(user){
+  //   $.get("/api/user/owner/" + user.id, function(results){
+  //
+  //     console.log(results.Owner);
+  //   });
+  // }
 
-      console.log(results.Owner);
-    });
-  }
 
-  
   var stateSelect = ["AL", "AK", "AS", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FM", "FL", "GA", "GU", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MH", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "MP", "OH", "OK", "OR", "PW", "PA", "PR", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VI", "VA", "WA", "WV", "WI", "WY"];
   for (var i = 0; i < stateSelect.length; i++) {
     var option = $("<option></option>");
@@ -37,22 +37,42 @@ $(document).ready(function () {
 
 
     var $newGenderInput = $("#gen");
+    var $newActivityInput = $("#dogActivity");
+    var $newSizeInput = $("#dogSize");
+    var $newBreedInput = $("#brd");
     var $newAgeInput = $("#age");
-    //var $newEmailInput = $("#inputEmail4");
+    var $newImageInput = $("#inputImage");
     var $newPhoneInput = $("#phone");
 
     var sitter = {
       name: fullName,
       gender: $newGenderInput.val().trim(),
-      email: userEmail,
+      email: user.email,
       contact: $newPhoneInput.val().trim(),
       address: fullAddress,
-      age: $newAgeInput.val().trim()
+      age: $newAgeInput.val().trim(),
+      preferred_breed: $newBreedInput.val().trim(),
+      preferred_size: $newSizeInput.val().trim(),
+      preferred_activity: $newActivityInput.val().trim(),
+      image_link: $newImageInput .val().trim(),
+      UserId: user.id
     };
-    
-    $.post("/api/sitter", sitter, function() {
-      window.location.href = "../profile.html";
+
+    console.log(sitter);
+    $.post("/api/sitter", sitter).then(function(){
+      $.ajax({
+        method: "PUT",
+        url: "/api/sitter",
+        data: sitter
+      })
+        .then(function() {
+          //window.location.href = "../members";
+        });
     });
+
+    
+     
+    
 
   });
 

@@ -20,12 +20,14 @@ module.exports = function(sequelize, DataTypes) {
     User.hasOne(models.Owner, {
       foreignKey: {
         allowNull: false
-      }
+      },
+      onDelete: "cascade"
     }),
     User.hasOne(models.Sitter, {
       foreignKey: {
         allowNull: false
-      }
+      },
+      onDelete: "cascade"
     });
   };
   User.prototype.validPassword = function(password) {

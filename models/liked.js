@@ -1,12 +1,12 @@
-module.exports = function (sequelize) {
+module.exports = function (sequelize, DataTypes) {
   var Liked = sequelize.define("Liked", {
-  // User_ID: {
-  //   type: DataTypes.INTEGER,
-  //   allowNull: false,
-  //   validate: {
-  //     len: [1]
-  //   }
-  // },
+    Owner_ID: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
   // Dog_ID: {
   //   type: DataTypes.INTEGER,
   //   allowNull: false,

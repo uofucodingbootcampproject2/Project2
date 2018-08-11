@@ -7,6 +7,7 @@ $(document).ready(function() {
     currentUser = data;
     console.log(currentUser);
     matchOwner(currentUser);
+    matchSitter(currentUser);
   });
   function matchOwner(currentUser){
     $.get("/api/owner/" + currentUser.id, function(results){
@@ -17,6 +18,18 @@ $(document).ready(function() {
       
       }else{
         $("#createOwner").show();
+      }
+    });
+  }
+  function matchSitter(currentUser){
+    $.get("/api/sitter/" + currentUser.id, function(results){
+      console.log(results.UserId);
+    
+      if(results.UserId !== undefined){
+        $("#createSitter").hide();
+      
+      }else{
+        $("#createSitter").show();
       }
     });
   }

@@ -25,39 +25,17 @@ module.exports = function (sequelize, DataTypes) {
     contact: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validate: {
+      valide: {
         len: [1]
       }
     },
-    streetAddress: {
+    address: {
       type: DataTypes.STRING,
       allowNull: false,
       valide: {
         len: [1]
       }
-    },
-    city: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
-    },
-    state: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      isUppercase: true,
-      validate: {
-        len: [2,2]
-      }
-    },
-    zipcode: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      isNumeric: true,
-      validate: {
-        len: [4,5]
-      }
+   
     },
     age: {
       type: DataTypes.INTEGER,
@@ -73,7 +51,7 @@ module.exports = function (sequelize, DataTypes) {
     preferred_size: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
+      valide: {
         len: [1],
       }
     },
@@ -86,18 +64,18 @@ module.exports = function (sequelize, DataTypes) {
     },
     image_link: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: true
     }
     
   });
   Sitter.associate = function (models) {
+    Sitter.hasMany(models.Liked, {
+      onDelete: "cascade"
+    }),
     Sitter.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
       }
-    }),
-    Sitter.hasMany(models.Liked, {
-      onDelete: "cascade"
     });
   };
   return Sitter;

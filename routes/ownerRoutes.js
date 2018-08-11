@@ -110,7 +110,8 @@ module.exports = function (app) {
       password: req.body.password,
       contact: req.body.contact,
       address: req.body.address,
-      age: req.body.age
+      age: req.body.age,
+      UserId: req.body.UserId
     }, {
       where: {
         id: req.body.id
