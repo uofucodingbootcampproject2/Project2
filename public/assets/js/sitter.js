@@ -66,7 +66,7 @@ $(document).ready(function () {
         data: sitter
       })
         .then(function() {
-          //window.location.href = "../members";
+          window.location.href = "../members";
         });
     });
 

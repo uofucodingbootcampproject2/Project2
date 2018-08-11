@@ -50,7 +50,7 @@ $(document).ready(function () {
         data: owner
       })
         .then(function() {
-          //window.location.href = "../members";
+          window.location.href = "../members";
         });
     }
   });
