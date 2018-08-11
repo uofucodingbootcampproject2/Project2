@@ -30,7 +30,7 @@ module.exports = function (app) {
     });
   });
 
-  //remove this route
+  //REMOVE this route
   app.get("/api/owner/sitter/:id", function (req, res) {
     // findAll returns all entries for a table when used with no options
     db.Owner.findOne({

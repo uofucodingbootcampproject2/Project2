@@ -43,7 +43,8 @@ module.exports = function (app) {
       activity_level: req.body.activity_level,
       size: req.body.size,
       sitter_gender: req.body.sitter_gender,
-      image_link: req.body.image_link
+      image_link: req.body.image_link,
+      OwnerId: req.body.OwnerId
     }).then(function (result) {
     // We have access to the new todo as an argument inside of the callback function
       res.json(result);

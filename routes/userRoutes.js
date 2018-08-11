@@ -63,4 +63,16 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/api/user/petOwner/:id", function (req, res) {
+    // findAll returns all entries for a table when used with no options
+    db.User.findOne({
+      
+      where: { id: req.params.id},
+      include: [db.Owner]
+    }).then(function (result) {
+    // We have access to the Sitter as an argument inside of the callback function
+      res.json(result);
+    });
+  });
+
 };
