@@ -25,7 +25,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/matches/:id", function (req, res) {
+  app.get("/api/match/:id", function (req, res) {
     var dogArr = [];
     var sitterInfo;
     var combatabilityScore = 0;

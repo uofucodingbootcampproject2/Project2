@@ -34,6 +34,7 @@ module.exports = function(app) {
     }
     db.Pet.findAll({}).then(function (result) {
       dogArr = result;
+      console.log("findAll");
       console.log(dogArr);
       db.Sitter.findAll({
         where: {
@@ -42,7 +43,9 @@ module.exports = function(app) {
       }).then(function (data) {
         sitterInfo = data;
         for (var i = 0; i < dogArr.length; i++){
-          if(dogArr[i].dataValues.sitter_gender !== "either" && dogArr[i].dataValues.sitter_gender !== sitterInfo.gender){
+          console.log("SITTERINFO GENDER");
+          console.log(sitterInfo);
+          if(dogArr[i].dataValues.sitter_gender !== "either" || dogArr[i].dataValues.sitter_gender !== sitterInfo.dataValues.gender){
             tempArr.push(dogArr[i]);
           }
         }
@@ -51,10 +54,11 @@ module.exports = function(app) {
           for (var j = 0; j < dogArr.length; j++){
             if(tempArr[i].id === dogArr[j].id){
               dogArr.splice(j, 1);
+              
             }
           }
         }
-    
+        
         for(var i = 0; i < dogArr.length; i++){
           if(sitterInfo[0].dataValues.gender === dogArr[i].dataValues.sitter_gender || dogArr[i].dataValues.sitter_gender === "either"){
             combatabilityScore++;
@@ -69,6 +73,7 @@ module.exports = function(app) {
             combatabilityScore++;
           }
           var tempDog = new dog(dogArr[i].dataValues.id, dogArr[i].dataValues.image_link, combatabilityScore, dogArr[i].dataValues.name, dogArr[i].dataValues.breed);
+        
           if(i < compatableArr.length){
             compatableArr.push(tempDog);
           }
@@ -86,6 +91,7 @@ module.exports = function(app) {
         var Returnobj = {
           pets: []
         };
+        
         Returnobj.pets = compatableArr;
         Returnobj.pets[0].active = true;
         res.render("carousel", {
