@@ -48,7 +48,7 @@ $(document).ready(function () {
                 divImg.attr("src", results[i].image_link);
                 divCardTitle.text(results[i].name);
                 divCardText.text(results[i].breed);
-                divCardText.text(results[i].gender);
+                divCardText2.text(results[i].gender);
                 likeBtn.text("Like");
                 likeBtn.attr({
                     "data-petId": results[i].id,
