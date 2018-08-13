@@ -25,7 +25,7 @@ module.exports = function (sequelize, DataTypes) {
     age: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      valide: {
+      validate: {
         len: [1]
       }
     },

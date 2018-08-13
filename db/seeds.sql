@@ -10,6 +10,6 @@ VALUES('Scooter', 'Male', 'Shitzu', 4, true, true,
 1);
 
 INSERT INTO Sitters (name, gender, email, contact, zipcode, age, preferred_breed, preferred_size, preferred_activity, image_link, UserId)VALUES('Nick', 'Male', 'nick@nick.com',
-'801-855-5555', '1222 Cherry Street, Salt Lake City, UT 84444', 
+'801-855-5555', '84444', 
 28, 'any', 'any', 'any', 'https://image.shutterstock.com/image-vector/male-default-placeholder-avatar-profile-260nw-387516193.jpg',
 2);

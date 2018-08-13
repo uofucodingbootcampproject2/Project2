@@ -17,7 +17,7 @@ module.exports = function (app) {
   // GET route for getting one of the rows in the Owner database
   app.get("/api/owner/:id", function (req, res) {
     // findAll returns all entries for a table when used with no options
-    db.Owner.findAll({
+    db.Owner.findOne({
       where: {
         id: req.params.id
       },
@@ -38,7 +38,7 @@ module.exports = function (app) {
       gender: req.body.gender,
       email: req.body.email,
       contact: req.body.contact,
-      zipcode: req.body.address,
+      zipcode: req.body.zipcode,
       age: req.body.age,
       UserId: req.body.UserId
     }).then(function (result) {
@@ -73,7 +73,7 @@ module.exports = function (app) {
       gender: req.body.gender,
       email: req.body.email,
       contact: req.body.contact,
-      zipcode: req.body.address,
+      zipcode: req.body.zipcode,
       age: req.body.age,
       UserId: req.body.UserId
     }, {

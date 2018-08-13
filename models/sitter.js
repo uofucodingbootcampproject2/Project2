@@ -25,15 +25,17 @@ module.exports = function (sequelize, DataTypes) {
     contact: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      valide: {
-        len: [1]
+      validate: {
+        isNumeric: true,
+        len: [1,11]
       }
     },
     zipcode: {
       type: DataTypes.STRING,
       allowNull: false,
-      valide: {
-        len: [1]
+      validate: {
+        isNumeric: true,
+        len: [1,5]
       }
    
     },
@@ -51,7 +53,7 @@ module.exports = function (sequelize, DataTypes) {
     preferred_size: {
       type: DataTypes.STRING,
       allowNull: false,
-      valide: {
+      validate: {
         len: [1],
       }
     },

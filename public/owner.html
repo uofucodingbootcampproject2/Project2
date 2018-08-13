@@ -22,7 +22,7 @@
     <div class="container">
 
         <form id="ownerForm">
-            <div class="form-row">
+            <div class="form-row" id="nameRow">
                 <div class="form-group col-md-6">
                     <label for="firstName">First Name</label>
                     <input type="text" class="form-control" id="firstName" placeholder="First name">
@@ -32,8 +32,8 @@
                     <input type="text" class="form-control" id="lastName" placeholder="Last name">
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
+            <div class="form-row" id="additionalInfo">
+                <div class="form-group col-md-3">
                     <label for="age">Age</label>
                     <input type="number" class="form-control" id="age" placeholder="Age">
                 </div>
@@ -47,9 +47,13 @@
                     </select>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="phone">Phone Number</label>
+                    <label for="phone">Phone Number(No Dashes)</label>
                     <input type="text" class="form-control" id="phone" placeholder="Phone Number">
                 </div>
+                <div class="form-group col-md-3">
+                        <label for="inputZip">Zip Code(5-Digit)</label>
+                        <input type="text" class="form-control" id="inputZip" placeholder="Zip Code" pattern="[0-9]{5}">
+                    </div>
             </div>
             <!--div class="form-row">
                 <div class="form-group col-md-6">
@@ -62,7 +66,7 @@
                 </div>
             </div-->
 
-            <div class="form-group">
+            <!--div class="form-group">
                 <label for="inputAddress">Address</label>
                 <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
             </div>
@@ -78,15 +82,13 @@
                         <option selected>Choose...</option>
                     </select>
                 </div>
-                <div class="form-group col-md-2">
-                    <label for="inputZip">Zip</label>
-                    <input type="text" class="form-control" id="inputZip">
-                </div>
-            </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+              
+            </div-->
+
+            <button type="submit" class="btn btn-primary">Link to Profile</button>
         </form>
-        <a href="dog-owner-question.html" class="btn btn-primary btn-lg active" style="float:right" role="button" aria-pressed="true">- Test Dog -</a>
+        
     </div>
     <!-- Optional JavaScript -->
 
