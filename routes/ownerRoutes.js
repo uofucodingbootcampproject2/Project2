@@ -38,7 +38,7 @@ module.exports = function (app) {
       gender: req.body.gender,
       email: req.body.email,
       contact: req.body.contact,
-      zipcode: req.body.address,
+      zipcode: req.body.zipcode,
       age: req.body.age,
       UserId: req.body.UserId
     }).then(function (result) {
@@ -73,7 +73,7 @@ module.exports = function (app) {
       gender: req.body.gender,
       email: req.body.email,
       contact: req.body.contact,
-      zipcode: req.body.address,
+      zipcode: req.body.zipcode,
       age: req.body.age,
       UserId: req.body.UserId
     }, {
