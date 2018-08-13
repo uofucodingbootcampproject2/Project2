@@ -14,8 +14,9 @@ $(document).ready(function () {
     function matches(currentUser) {
         $.get("/api/user/owner/" + currentUser.id, function (results) {
             console.log(results);
-            if (results.Owner !== null) {
+            if (results.Owner !== null ) {
                 $("#createOwner").hide();
+              
                 displayPets(currentUser);
             } else {
                 $("#createOwner").show();
@@ -43,12 +44,21 @@ $(document).ready(function () {
             var sitSize = $("<p>");
             var sitBreed = $("<p>");
             var sitZip = $("<p>");
-
+if(results.Owner !== null ){
             ownName.text("Name: " + results.Owner.name);
             ownContact.text("Phone #: " + results.Owner.contact);
             ownAge.text("Age: " + results.Owner.age);
             ownGender.text("Gender: " + results.Owner.gender);
             ownZip.text("Zip Code: " + results.Owner.zipcode);
+            $("#profileInfo").prepend(divColOwn);
+            divColOwn.append(divOwnCard);
+            divOwnCard.append(ownName);
+            divOwnCard.append(ownAge);
+            divOwnCard.append(ownGender);
+            divOwnCard.append(ownContact);
+            divOwnCard.append(ownZip);
+}
+if(results.Owner !== null ){
             sitName.text("Name: " + results.Sitter.name);
             sitContact.text("Phone #: " + results.Sitter.contact);
             sitAge.text("Age: " + results.Sitter.age);
@@ -58,14 +68,9 @@ $(document).ready(function () {
             sitSize.text("Preferred Size: " + results.Sitter.preferred_size);
             sitAct.text("Preferred Activity: " + results.Sitter.preferred_activity);
 
-            $("#profileInfo").prepend(divColOwn);
+            
             $("#profileInfo").append(divColSit);
-            divColOwn.append(divOwnCard);
-            divOwnCard.append(ownName);
-            divOwnCard.append(ownAge);
-            divOwnCard.append(ownGender);
-            divOwnCard.append(ownContact);
-            divOwnCard.append(ownZip);
+            
             divColSit.append(divSitCard);
             divSitCard.append(sitName);
             divSitCard.append(sitAge);
@@ -75,6 +80,7 @@ $(document).ready(function () {
             divSitCard.append(sitBreed);
             divSitCard.append(sitSize);
             divSitCard.append(sitAct);
+}
         });
     }
     $("#viewMatches").on("click", function () {
@@ -87,9 +93,9 @@ $(document).ready(function () {
         $.get("/api/owner/" + currentUser.id, function (results) {
 
             console.log(results);
-
+if(results !== null ){
             for (var i = 0; i < results.Pets.length; i++) {
-                //var divRow = $("<div class='row'>");
+                //
                 var divCol = $("<div class='col-6'>");
                 var divCard = $("<div class='card flex-row flex-wrap mt-2 mb-5'>");
                 var divImg = $("<img class='card-img-top' src='' alt='Card image cap'>");
@@ -138,6 +144,75 @@ $(document).ready(function () {
                 divCardBlock.append(divCardFavAct);
 
             }
+           var pet = results.Pets;
+           likedDogs(pet);
+        }
         });
+    
+    }
+
+function likedDogs(pet){
+    console.log(pet);
+    console.log(pet.length);
+   $.each(pet, function(i){
+   // for(var i= 0; i < pet.length; i++){
+        console.log(pet[i]);
+    //looking each of the current users pets in the like table
+    $.get("/pulling/liked/sitters/" + pet[i].id, function (results) {
+            console.log(results);
+if(results.length === 0 || results[i] === undefined){
+    console.log("yes");
+} else {
+    console.log(results);
+    $.get("/api/sitter/" + results[i].SitterId, function (sitter) {
+        console.log(sitter);
+console.log(pet[i]);
+        var crtPetCol = $("<div class='col-12'>");
+        var crtPetName = $("<h3>");
+        var sitterCol = $("<div class='col-6'>");
+        var sitCard = $("<div class='card flex-row flex-wrap mt-2 mb-5'>");
+        var sitImg = $("<img class='card-img-top' src='' alt='Card image cap'>");
+        var sitCardHeader = $("<div class='card-header border-0'>");
+        var sitCardBlock = $("<div class='card-block px-2'>");
+        var sitCardName = $("<p class='card-text'></p>");
+        var sitCardBreed = $("<p class='card-text'></p>");
+        var sitCardAge = $("<p class='card-text'></p>");
+        var sitCardSize = $("<p class='card-text'></p>");
+        var sitCardZip = $("<p class='card-text'></p>");
+        var sitCardActLvl = $("<p class='card-text'></p>");
+        var sitCardGen = $("<p class='card-text'></p>");
+
+        crtPetName.text(pet[i].name);
+        sitImg.attr("src", sitter[i].image_link);
+        sitCardName.text("Name: " + sitter[i].name);
+        sitCardBreed.text("Preferred Breed: " + sitter[i].preferred_breed);
+        sitCardGen.text("Gender: " + sitter[i].gender);
+        sitCardAge.text("Age: " + sitter[i].age);
+        sitCardSize.text("Preferred Size: " + sitter[i].preferred_size);
+        sitCardZip.text("Social w/ People: " + sitter[i].zipcode);
+        sitCardActLvl.text("Activity Level: " + sitter[i].preferred_activity);
+        
+        $("#sitters").append(crtPetCol);
+        crtPetCol.append(crtPetName);
+        $("#sitters").append(sitterCol);
+        sitterCol.append(sitCard);
+        sitCard.append(sitCardHeader);
+        sitCardHeader.append(sitImg);
+        sitCard.append(sitCardBlock);
+        sitCardBlock.append(sitCardName);
+        sitCardBlock.append(sitCardBreed);
+        sitCardBlock.append(sitCardGen);
+        sitCardBlock.append(sitCardAge);
+        sitCardBlock.append(sitCardSize);
+        sitCardBlock.append(sitCardZip);
+        sitCardBlock.append(sitCardActLvl);
+
+
+
+
+    });
+}
+        });
+    });
     }
 });

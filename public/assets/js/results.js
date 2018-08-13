@@ -20,7 +20,8 @@ $(document).ready(function () {
         $.get("/api/dogs", function (results) {
             console.log(results);
             $.each(results, function (j) {
-                if(outcome.Owner !== null){
+                console.log(outcome.Owner);
+                if(outcome.Owner !== null ){
                 if (results[j].OwnerId !== outcome.Owner.id) {
                     if (results[j].sitter_gender === outcome.Owner.gender) {
                         dogArr.push(results[j]);
@@ -33,16 +34,16 @@ $(document).ready(function () {
             }
             });
 
-
+console.log(dogArr);
             for (var i = 0; i < dogArr.length; i++) {
                 //$.each(results, function (i) {
 
                 var likeBtn = $("<button class='btn likeButton'>");
-                var divCol = $("<div class='col-md-2  text-white'>");
-                var divCard = $("<div class='card bg-dark text-white'>");
+                var divCol = $("<div class='col-md-2'>");
+                var divCard = $("<div class='card'>");
                 var divImg = $("<img class='card-img' src='' alt='Card image'>");
                 var divOvrly = $("<div class='card-img-overlay'>");
-                var divCardTitle = $("<h5 class='card-title'>Card title</h5>");
+                var divCardTitle = $("<h5 class='card-title'>");
                 var divCardText = $("<p class='card-text'>");
                 var divCardText2 = $("<p class='card-text'>");
                 divImg.attr("src", results[i].image_link);

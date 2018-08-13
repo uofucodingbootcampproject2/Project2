@@ -2,7 +2,7 @@ var db = require("../models");
 var passport = require("../config/passport");
 
 module.exports = function (app) {
-
+//using to get dog liked into Liked Table
   app.post("/liking/dog", function (req, res) {
     db.Liked.create({
       Owner_ID: req.body.Owner_ID,
@@ -14,7 +14,7 @@ module.exports = function (app) {
     });
   });
 
-  app.get("pulling liked sitters/:id", function (req, res) {
+  app.get("/pulling/liked/sitters/:id", function (req, res) {
     db.Liked.findAll({
       where: {
         PetId: req.params.id
@@ -25,7 +25,7 @@ module.exports = function (app) {
 
   });
 
-  app.post("likeing sitters/", function (req, res) {
+  app.post("/likeing/sitters/:id", function (req, res) {
     db.Liked.update({
       Owner_likes_Sitter: true
     },
@@ -38,8 +38,8 @@ module.exports = function (app) {
           res.json(err);
         });
       });
-
-    app.get("pulling matched sitters and owners/:id", function (req, res) {
+//this is done to let the potential sitter that they have been approved
+    app.get("/pulling/matched/sitters/owners/:id", function (req, res) {
       db.findAll({
         where: {
           PetId: req.params.PetId,
