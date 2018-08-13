@@ -15,10 +15,12 @@ $(document).ready(function () {
             showMatches(outcome);
         });
     }
+
     function showMatches(outcome) {
         $.get("/api/dogs", function (results) {
             console.log(results);
             $.each(results, function (j) {
+                if(outcome.Owner !== null){
                 if (results[j].OwnerId !== outcome.Owner.id) {
                     if (results[j].sitter_gender === outcome.Owner.gender) {
                         dogArr.push(results[j]);
@@ -26,13 +28,16 @@ $(document).ready(function () {
                         dogArr.push(results[j]);
                     }
                 }
+            }else{
+                dogArr.push(results[j]);
+            }
             });
 
 
             for (var i = 0; i < dogArr.length; i++) {
                 //$.each(results, function (i) {
 
-
+                var likeBtn = $("<button class='btn likeButton'>");
                 var divCol = $("<div class='col-md-2  text-white'>");
                 var divCard = $("<div class='card bg-dark text-white'>");
                 var divImg = $("<img class='card-img' src='' alt='Card image'>");
@@ -44,6 +49,11 @@ $(document).ready(function () {
                 divCardTitle.text(results[i].name);
                 divCardText.text(results[i].breed);
                 divCardText.text(results[i].gender);
+                likeBtn.text("Like");
+                likeBtn.attr({
+                    "data-petId": results[i].id,
+                    "data-ownerId": results[i].OwnerId
+                });
                 $("#cardContainer").append(divCol);
                 divCol.append(divCard);
                 divCard.append(divImg);
@@ -51,24 +61,28 @@ $(document).ready(function () {
                 divOvrly.append(divCardTitle);
                 divOvrly.append(divCardText);
                 divOvrly.append(divCardText2);
-
+                divCol.append(likeBtn);
                 //});
             }
         });
         console.log(dogArr);
+    console.log(outcome);
+    $(document).on("click", ".likeButton", function(){
+  console.log(outcome);
+   var like = {
+       Owner_ID: $(this).attr("data-ownerId"),
+     PetId: $(this).attr("data-petId"),
+     SitterId: outcome.Sitter.id
+   };
+
+console.log(like);
+$.post("/liking/dog", like);
+
+    });
+
+
+
     }
-
-
-
-
-
-
-
-
-
-
-
-
     //var testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     //
     //var blankArr = [];
@@ -90,5 +104,5 @@ $(document).ready(function () {
 
     //$.get("/api/user/owner/" + currentUser.id, function (results) {});
 
-
+    //});
 });

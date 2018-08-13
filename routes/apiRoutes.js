@@ -3,11 +3,12 @@ var passport = require("../config/passport");
 
 module.exports = function (app) {
 
-  app.post("/liking a dog/:id", function (req, res) {
+  app.post("/liking/dog", function (req, res) {
     db.Liked.create({
-      OwnerId: req.body.OwnerId,
-      PetId: req.params.id,
-      Sitterid: req.body.SitterId
+      Owner_ID: req.body.Owner_ID,
+      PetId: req.body.PetId,
+      SitterId: req.body.SitterId,
+      Owner_likes_Sitter: false
     }).then(function (data) {
       res.json(data);
     });
