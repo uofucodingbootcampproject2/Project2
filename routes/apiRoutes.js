@@ -25,6 +25,13 @@ module.exports = function (app) {
 
   });
 
+  app.get("/pulling/liked", function (req, res){
+    db.Liked.findAll({}).then(function (result) {
+      // We have access to the Liked as an argument inside of the callback function
+      res.json(result);
+    });
+  });
+
   app.post("/likeing/sitters/:id", function (req, res) {
     db.Liked.update({
       Owner_likes_Sitter: true
@@ -38,6 +45,7 @@ module.exports = function (app) {
           res.json(err);
         });
       });
+    });
 //this is done to let the potential sitter that they have been approved
     app.get("/pulling/matched/sitters/owners/:id", function (req, res) {
       db.findAll({
@@ -50,6 +58,7 @@ module.exports = function (app) {
           res.json(err);
         });
       });
+    });
       // Using the passport.authenticate middleware with our local strategy.
       // If the user has valid login credentials, send them to the members page.
       // Otherwise the user will be sent an error
@@ -174,4 +183,4 @@ module.exports = function (app) {
           });
         });
       });
-    });});};
+    };
